@@ -7,12 +7,20 @@ input{
   display: block;
   margin: 0 auto 20px auto;
   padding: 8px;
-  width: 250px;
+  width: 400px;
+}
+
+label{
+  display: block;
+  width: 400px;
+  margin: 0 auto 5px auto;
+  font-weight: bold;
 }
 
 table{
-  width: 100%;
+  width: 70%;
   border-collapse: collapse;
+  margin: 0 auto;
 }
 
 th, td {
@@ -32,4 +40,33 @@ th:hover{
 
 tr:nth-child(even){
   background-color: #fafafa;
+}
+
+@media (max-width: 1023px){
+  table{
+    width: 90%;
+  }
+
+  input{
+    width: 300px;
+  }
+
+  label{
+    width: 300px;
+  }
+}
+
+@media (max-width: 600px){
+  table{
+    width: 100%;
+  }
+
+  input{
+    width: 100%;
+  }
+
+  label{
+    width: 100%;
+    margin: 0 0 5px 0;
+  }
 }
