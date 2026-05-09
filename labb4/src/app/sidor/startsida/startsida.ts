@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { Course } from '../course.model';
 import { CourseService } from '../services/course';
 
 @Component({
@@ -13,7 +14,7 @@ import { CourseService } from '../services/course';
 })
 export class StartsidaComponent implements OnInit {
 
-  courses: any[] = [];
+  courses: Course[] = [];
   searchText: string = '';
   sortKey: string = '';
   sortAsc: boolean = true;
@@ -26,23 +27,23 @@ export class StartsidaComponent implements OnInit {
     });
     }
 
-  sortBy(key: string) {
-    if (this.sortKey === key) {
-      this.sortAsc = !this.sortAsc;
-    } else {
-      this.sortKey = key;
-      this.sortAsc = true;
+    sortBy(key: keyof Course) {
+        if (this.sortKey === key) {
+        this.sortAsc = !this.sortAsc;
+        } else {
+        this.sortKey = key;
+        this.sortAsc = true;
+        }
+
+        this.courses.sort((a, b) => {
+        let valueA = a[key].toLowerCase();
+        let valueB = b[key].toLowerCase();
+
+        if (valueA < valueB) return this.sortAsc ? -1 : 1;
+        if (valueA > valueB) return this.sortAsc ? 1 : -1;
+        return 0;
+        });
     }
-
-    this.courses.sort((a, b) => {
-      let valueA = a[key].toLowerCase();
-      let valueB = b[key].toLowerCase();
-
-      if (valueA < valueB) return this.sortAsc ? -1 : 1;
-      if (valueA > valueB) return this.sortAsc ? 1 : -1;
-      return 0;
-    });
-  }
 
   filteredCourses() {
     return this.courses.filter(course =>
