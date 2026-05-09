@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { CourseService } from '../services/course.service';
+import { CourseService } from '../services/course';
 
 @Component({
   selector: 'app-startsida',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './startsida.component.html',
-  styleUrl: './startsida.component.css'
+  templateUrl: './startsida.html',
+  styleUrl: './startsida.css'
 })
 export class StartsidaComponent implements OnInit {
 
@@ -20,11 +20,11 @@ export class StartsidaComponent implements OnInit {
 
   constructor(private courseService: CourseService) {}
 
-  ngOnInit(): void {
-    this.courseService.getCourses().subscribe(data => {
-      this.courses = data;
+    ngOnInit(): void {
+    this.courseService.getCourses().subscribe((data: any[]) => {
+        this.courses = data;
     });
-  }
+    }
 
   sortBy(key: string) {
     if (this.sortKey === key) {
