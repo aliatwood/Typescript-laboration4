@@ -1,0 +1,25 @@
+<h2>Ramschema - Webbutveckling</h2>
+
+<input
+  type="text"
+  placeholder="Sök efter kurskod eller kursnamn"
+  [(ngModel)]="searchText"
+/>
+
+<table>
+  <thead>
+    <tr>
+      <th (click)="sortBy('code')">Kurskod</th>
+      <th (click)="sortBy('coursename')">Kursnamn</th>
+      <th (click)="sortBy('progression')">Progression</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let course of filteredCourses()">
+      <td>{{ course.code }}</td>
+      <td>{{ course.coursename }}</td>
+      <td>{{ course.progression }}</td>
+    </tr>
+  </tbody>
+</table>
