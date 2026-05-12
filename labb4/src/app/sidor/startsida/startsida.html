@@ -2,9 +2,11 @@
 
 <label for="search">Sök:</label>
 <input
+  id="search"
   type="text"
   placeholder="Sök efter kurskod eller kursnamn"
-  [(ngModel)]="searchText"
+  [ngModel]="searchText()"
+  (ngModelChange)="searchText.set($event)"
 />
 
 <table>
@@ -15,7 +17,6 @@
       <th (click)="sortBy('progression')">Progression</th>
     </tr>
   </thead>
-
   <tbody>
     <tr *ngFor="let course of filteredCourses()">
       <td>{{ course.code }}</td>
